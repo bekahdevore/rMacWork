@@ -1,5 +1,4 @@
 library(dplyr)
-library(DT)
 
 ###############################################################################################
 ## FUNCTIONS ##
@@ -83,4 +82,8 @@ write.csv(louisvilleData, file = 'louisvilleData.csv')
 
 rm(dataFrameOne, dataFrameTwo, dataFrameThree, louisvilleData)
 
+louisvilleData <- read.csv('louisvilleData.csv')
+
+louisvilleData <- louisvilleData %>%
+                      select(3, 5:6, 10:13, 20:22, 27:34, 40:54)
 

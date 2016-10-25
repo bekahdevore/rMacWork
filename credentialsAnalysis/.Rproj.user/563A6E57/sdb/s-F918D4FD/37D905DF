@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\n\nlouisvilleDataCert <- left_join(louisvilleData, allCerts, by = 'BGTJobId')\n\nrm(allCerts)\n",
+    "created" : 1477433109431.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "639143855",
+    "id" : "37D905DF",
+    "lastKnownWriteTime" : 1477433436,
+    "last_content_update" : 1477433449085,
+    "path" : "/Volumes/admin_shared$/Bekah.Data/rProjects/credentialsAnalysis/dataMerge.R",
+    "project_path" : "dataMerge.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

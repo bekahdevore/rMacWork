@@ -12,14 +12,14 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "ehymnrqsly",
+        "cacheKey" : "klrzx5vt4z",
         "caption" : "allCerts",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=allCerts&cache_key=ehymnrqsly",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=allCerts&cache_key=klrzx5vt4z",
         "displayedObservations" : "11951932",
         "environment" : "",
         "object" : "allCerts",
         "totalObservations" : "11951932",
-        "variables" : "1"
+        "variables" : "4"
     },
     "relative_order" : 3,
     "source_on_save" : false,
