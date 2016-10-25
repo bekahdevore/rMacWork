@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\nlibrary(RCurl)\nlibrary(stringr)\n\nburningGlassDataConnection <- getURL('https://docs.google.com/spreadsheets/d/19UB0HXT3LY4YuMWwpsllon7kt4QMjSq4yqBwY4GW0Kg/pub?gid=0&single=true&output=csv')\nemsiDataConnection         <- getURL('https://docs.google.com/spreadsheets/d/1CT9R_MIs_s7ULDm-RCexVsW9m6LZa26EqH0Cd3LEB3k/pub?gid=0&single=true&output=csv')        \n\nburningGlassDataJCTC <- read.csv(textConnection(burningGlassDataConnection), check.names = FALSE)\nemsiDataJCTC         <- read.csv(textConnection(emsiDataConnection), check.names = FALSE)\n\n\nbiannualData <- full_join(emsiDataJCTC, burningGlassDataJCTC, by = 'SOC')\n\nwrite.csv(biannualData, file = 'biannualData.csv')\n",
+    "created" : 1477324034600.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1755955544",
+    "id" : "D8BFFB40",
+    "lastKnownWriteTime" : 1477324844,
+    "last_content_update" : 1477324850488,
+    "path" : "/Volumes/admin_shared$/Bekah.Data/rProjects/biannualReport/mergeData.R",
+    "project_path" : "mergeData.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

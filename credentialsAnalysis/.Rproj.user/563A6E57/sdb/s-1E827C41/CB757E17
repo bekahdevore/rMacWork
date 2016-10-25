@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\n\n###############################################################################################\n                                    ## FUNCTIONS ##\n###############################################################################################\nlouisvilleFilter <- function(dataFrameName) {\n                          dataFrameName <- dataFrameName %>% \n                            filter(MSA == 31140)\n                    }\n\n## Main 2015\nmain2015.01 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-01.txt\"))\nmain2015.02 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-02.txt\"))\nmain2015.03 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-03.txt\"))\nmain2015.04 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-04.txt\"))\nmain2015.05 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-05.txt\"))\nmain2015.06 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-06.txt\"))\nmain2015.07 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-07.txt\"))\nmain2015.08 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-08.txt\"))\nmain2015.09 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-09.txt\"))\nmain2015.10 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-10.txt\"))\nmain2015.11 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-11.txt\"))\nmain2015.12 <- louisvilleFilter(read.delim(\"mainTextFiles/main2015/main2015-12.txt\"))\n## Main 2016\nmain2016.01 <- louisvilleFilter(read.delim(\"mainTextFiles/main2016/Main 2016-01.txt\"))\nmain2016.02 <- louisvilleFilter(read.delim(\"mainTextFiles/main2016/Main 2016-02.txt\"))\nmain2016.03 <- louisvilleFilter(read.delim(\"mainTextFiles/main2016/Main 2016-03.txt\"))\nmain2016.04 <- louisvilleFilter(read.delim(\"mainTextFiles/main2016/Main 2016-04.txt\"))\nmain2016.05 <- louisvilleFilter(read.delim(\"mainTextFiles/main2016/Main 2016-05.txt\"))\nmain2016.06 <- louisvilleFilter(read.delim(\"mainTextFiles/main2016/Main 2016-06.txt\"))\n\ndo.call(\"rbind\", list(main2015.01, \n                      main2015.02, \n                      main2015.03, \n                      main2015.04, \n                      main2015.05,\n                      main2015.06,\n                      main2015.07,\n                      main2015.08,\n                      main2015.09,\n                      main2015.10,\n                      main2015.11,\n                      main2015.12,\n                      main2016.01,\n                      main2016.02,\n                      main2016.03))\n",
+    "created" : 1477325062540.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "16537374",
+    "id" : "CB757E17",
+    "lastKnownWriteTime" : 1477325977,
+    "last_content_update" : 1477339509847,
+    "path" : "/Volumes/admin_shared$/Bekah.Data/rProjects/credentialsAnalysis/burningGlassDataCleaning.R",
+    "project_path" : "burningGlassDataCleaning.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(RCurl)\nlibrary(dplyr)\nlibrary(stringr)\n\nsocCodes             <- c(\"15-1134\", \"15-1151\", \"15-1151\", \"15-1152\",\"17-3023\", \"17-3024\", \"17-3026\", \"17-3013\", \n                          \"49-2011\", \"49-2094\", \"49-2094\", \"49-2094\", \"49-3023\", \"51-4121\",\n                          \"49-9012\", \"49-9041\", \"49-9043\", \"49-9044\", \"49-9071\", \"49-9071\",\n                          \"51-4011\", \"51-4041\", \"51-4071\", \"51-4081\", \"51-4111\", \"51-4122\")\n\nburningGlassDataConnection <- getURL('https://docs.google.com/spreadsheets/d/1iH9ZPkjY594jkKaGryy80Zsv6S_NUK6O_YaoZ-s1zqg/pub?gid=0&single=true&output=csv')\nemsiDataConnection         \n\nburningGlassDataJCTC <- read.csv(textConnection(burningGlassDataConnection), check.names = FALSE)\nemsiDataJCTC         <- read.csv('emsiDataJCTC.csv', check.names = FALSE)\n\n\n\nburningGlassDataJCTC <- burningGlassDataJCTC %>%\n  filter(SOC %in% socCodes) \n\njctcData <- left_join(emsiDataJCTC, burningGlassDataJCTC, by = 'SOC')\njctcData <- left_join(emsiDataJCTC, burningGlassDataJCTC, by = 'SOC')\njctcData <- jctcData %>%\n  select(1:10, 12)\n\n\n\n\njctcData$`Age 55-64`  <-str_replace_all(jctcData$`Age 55-64`, \n                                        '<10', '5')\njctcData$`Age 65+`    <-str_replace_all(jctcData$`Age 65+`, \n                                        '<10', '5')\njctcData$`Median Hourly Earnings`  <- str_replace_all(jctcData$`Median Hourly Earnings`, \n                                                      '\\\\$', '')\njctcData$`Age 55-64`  <-as.numeric(str_replace_all(jctcData$`Age 55-64`, \n                                                   '\\\\,', ''))\njctcData$`Age 65+`    <-as.numeric(str_replace_all(jctcData$`Age 65+`, \n                                                   '\\\\,', ''))\njctcData$`2016 Jobs`               <-as.numeric(str_replace_all(jctcData$`2016 Jobs`, \n                                                                '\\\\,', ''))\njctcData$`2018 Jobs`               <-as.numeric(str_replace_all(jctcData$`2018 Jobs`, \n                                                                '\\\\,', ''))\njctcData$`2021 Jobs`               <-as.numeric(str_replace_all(jctcData$`2021 Jobs`, \n                                                                '\\\\,', ''))\njctcData$`Number of Job Postings`  <-as.numeric(str_replace_all(jctcData$`Number of Job Postings`, \n                                                                '\\\\,', ''))\n\njctcData$retirement <- (jctcData$`Age 55-64`) + (jctcData$`Age 65+`)\njctcData$retirement <- as.numeric(as.character(jctcData$retirement))\njctcData$`2016 - 2021 Change` <- as.numeric(as.character(jctcData$`2016 - 2021 Change`))\njctcData$jobsAdded <- (jctcData$`2016 - 2021 Change`) + (jctcData$retirement)\njctcData <- jctcData %>%\n  select(1:2, 11, 3:6, 13)\n\ncolnames(jctcData)[3] <- \"Number of Job Postings (Oct. 2015 - Sept. 2016)\"\ncolnames(jctcData)[5] <- \"2018 Jobs (Projected)\"\ncolnames(jctcData)[6] <- \"2021 Jobs (Projected)\"\ncolnames(jctcData)[8] <- \"Jobs Added + Possible Retirements (projected 2021)\"\n\n\n\n\n\nshinyServer(function(input, output) {\n  \n  output$dataTable <- DT::renderDataTable({\n    DT::datatable(jctcData, \n                  options = list(\n                    pageLength = 10))\n  })\n  \n  output$downloadData <- downloadHandler(\n    filename = function() {\n      paste('jctcData.csv', sep = '')\n    },\n    content = function(file) {\n      write.csv(jctcData, file)\n    }\n  )\n  \n})",
+    "created" : 1476820438178.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "152184564",
+    "id" : "9629456B",
+    "lastKnownWriteTime" : 1476822710,
+    "last_content_update" : 1476822723592,
+    "path" : "/Volumes/admin_shared$/Bekah.Data/rProjects/JCTCapp/server.r",
+    "project_path" : "server.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

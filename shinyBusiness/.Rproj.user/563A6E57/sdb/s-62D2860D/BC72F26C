@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(shinythemes)\n\nnavbarPage(\n  theme = shinytheme(\"cerulean\"),\n  title = 'Business Degrees in the Louisville MSA',\n  \n  tabPanel('Visualization', \n           h1('Business Degrees by Experience Level'),\n           br(),\n           br(),\n           plotlyOutput(\"distPlot\"), \n           h1('Occupations within each major group')\n  ),\n  \n  tabPanel('About Data', \n           h1('Burning Glass, Labor Insights'),\n           p('Online Job postings, July 2016 - September 2016')\n               ))\n\n\n",
+    "created" : 1476995296709.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1005617418",
+    "id" : "BC72F26C",
+    "lastKnownWriteTime" : 1476997346,
+    "last_content_update" : 1476997369556,
+    "path" : "/Volumes/admin_shared$/Bekah.Data/rProjects/shinyBusiness/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

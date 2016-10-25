@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\n\n\nfile2015_01 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-01.txt\")\nfile2015_02 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-02.txt\")\nfile2015_03 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-03.txt\")\nfile2015_04 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-04.txt\")\nfile2015_05 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-05.txt\")\nfile2015_06 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-06.txt\")\nfile2015_07 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-07.txt\")\nfile2015_08 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-08.txt\")\nfile2015_09 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-09.txt\")\nfile2015_10 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-10.txt\")\nfile2015_11 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-11.txt\")\nfile2015_12 <- read.delim(\"Certs Text Files/Certs 2015/Certs 2015-12.txt\")\n\nfile2016_01 <- read.delim(\"Certs Text Files/Certs 2016/Certs 2016-01.txt\")\nfile2016_02 <- read.delim(\"Certs Text Files/Certs 2016/Certs 2016-02.txt\")\nfile2016_03 <- read.delim(\"Certs Text Files/Certs 2016/Certs 2016-03.txt\")\nfile2016_04 <- read.delim(\"Certs Text Files/Certs 2016/Certs 2016-04.txt\")\nfile2016_05 <- read.delim(\"Certs Text Files/Certs 2016/Certs 2016-05.txt\")\nfile2016_06 <- read.delim(\"Certs Text Files/Certs 2016/Certs 2016-06.txt\")\n\nallCerts <- rbind(file2015_01,\n                  file2015_02,\n                  file2015_03,\n                  file2015_04,\n                  file2015_05,\n                  file2015_06,\n                  file2015_07,\n                  file2015_08,\n                  file2015_09,\n                  file2015_10,\n                  file2015_11,\n                  file2015_12,\n                  file2016_01,\n                  file2016_02,\n                  file2016_03,\n                  file2016_04,\n                  file2016_05,\n                  file2016_06)\n\n\n",
+    "created" : 1477425164617.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2286832300",
+    "id" : "394DE542",
+    "lastKnownWriteTime" : 1477425360,
+    "last_content_update" : 1477430583277,
+    "path" : "/Volumes/admin_shared$/Bekah.Data/rProjects/credentialsAnalysis/certsRscript.R",
+    "project_path" : "certsRscript.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

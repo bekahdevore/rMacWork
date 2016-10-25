@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\n\nmsaCode <- 31140\n\nfile2015_01 <- \"Certs Text Files/ 2015/main2015-01.txt\"\n\n###############################################################################################\n## FUNCTIONS ##\n###############################################################################################\nmsaFilter <- function(dataFrameName) {\n  dataFrameName <- dataFrameName %>% \n    filter(MSA == msaCode)\n}\n\n\n\n## Main 2015\nmain2015.01 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-01.txt\"))\nmain2015.02 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-02.txt\"))\nmain2015.03 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-03.txt\"))\nmain2015.04 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-04.txt\"))\nmain2015.05 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-05.txt\"))\nmain2015.06 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-06.txt\"))\nmain2015.07 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-07.txt\"))\n\ndataFrameOne <- do.call(\"rbind\", list(main2015.01, \n                                      main2015.02, \n                                      main2015.03,\n                                      main2015.04,\n                                      main2015.05,\n                                      main2015.06,\n                                      main2015.07))\nwrite.csv(dataFrameOne, file = 'dataFrameOne.csv')\n\nmain2015.08 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-08.txt\"))\nmain2015.09 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-09.txt\"))\nmain2015.10 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-10.txt\"))\nmain2015.11 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-11.txt\"))\nmain2015.12 <- msaFilter(read.delim(\"mainTextFiles/main2015/main2015-12.txt\"))\n\ndataFrameTwo   <- do.call(\"rbind\", list(main2015.08, \n                                        main2015.09, \n                                        main2015.10,\n                                        main2015.11,\n                                        main2015.12))\n\nwrite.csv(dataFrameTwo, file = 'dataFrameTwo.csv')\n\nrm(main2015.12, \n   main2015.11, \n   main2015.10, \n   main2015.09, \n   main2015.08, \n   dataFrameTwo)\n\n## Main 2016\nmain2016.01 <- msaFilter(read.delim(\"mainTextFiles/main2016/Main 2016-01.txt\"))\nmain2016.02 <- msaFilter(read.delim(\"mainTextFiles/main2016/Main 2016-02.txt\"))\nmain2016.03 <- msaFilter(read.delim(\"mainTextFiles/main2016/Main 2016-03.txt\"))\nmain2016.04 <- msaFilter(read.delim(\"mainTextFiles/main2016/Main 2016-04.txt\"))\nmain2016.05 <- msaFilter(read.delim(\"mainTextFiles/main2016/Main 2016-05.txt\"))\nmain2016.06 <- msaFilter(read.delim(\"mainTextFiles/main2016/Main 2016-06.txt\"))\n\ndataFrameThree <- do.call(\"rbind\", list(main2016.01, \n                                        main2016.02,\n                                        main2016.03,\n                                        main2016.04,\n                                        main2016.05,\n                                        main2016.06))\n\nwrite.csv(dataFrameThree, file = 'dataFrameThree.csv')\n\nrm(main2016.01, \n   main2016.02,\n   main2016.03,\n   main2016.04,\n   main2016.05,\n   main2016.06, \n   dataFrameThree)\n\ndataFrameOne   <- read.csv('dataFrameOne.csv')\ndataFrameTwo   <- read.csv('dataFrameTwo.csv')\ndataFrameThree <- read.csv('dataFrameThree.csv')\n\nlouisvilleData <- rbind(dataFrameOne, dataFrameTwo, dataFrameThree)\n\nwrite.csv(louisvilleData, file = 'louisvilleData.csv')\n\nrm(dataFrameOne, dataFrameTwo, dataFrameThree, louisvilleData)\n\n\n",
+    "created" : 1477421494696.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4213871013",
+    "id" : "7739CAF2",
+    "lastKnownWriteTime" : 1477424258,
+    "last_content_update" : 1477424970410,
+    "path" : "/Volumes/admin_shared$/Bekah.Data/rProjects/credentialsAnalysis/certsRscript.R",
+    "project_path" : "certsRscript.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
