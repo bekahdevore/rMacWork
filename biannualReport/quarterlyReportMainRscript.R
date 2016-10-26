@@ -56,6 +56,7 @@ highDemandData <- highDemandData %>%
 
 colnames(highDemandData)[3] <- 'Job Postings'
 
+
 #FUTURE CHANGES, DO ALL CALCULATIONS AND MELT IN R SCRIPT
 #Remove commas from Number of Job Postings, 2016 - 2026 Change, Age 55-64, Age 65 + 
 #Add new columns calculating Job Postings Ranking
