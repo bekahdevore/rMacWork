@@ -82,8 +82,17 @@ write.csv(louisvilleData, file = 'louisvilleData.csv')
 
 rm(dataFrameOne, dataFrameTwo, dataFrameThree, louisvilleData)
 
+
+
+
+## Join mainFile with certification data by jobID
 louisvilleData <- read.csv('louisvilleData.csv')
 
 louisvilleData <- louisvilleData %>%
                       select(3, 5:6, 10:13, 20:22, 27:34, 40:54)
+louisvilleDataCert <- left_join(louisvilleData, allCerts, by = 'BGTJobId')
 
+rm(allCerts)
+
+
+write.csv(louisvilleDataCert, file = 'louisvilleDataCerts.csv')

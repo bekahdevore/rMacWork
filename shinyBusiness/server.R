@@ -17,9 +17,9 @@ library(ggthemes)
 library(treemap)
 
 #Load data, upgrade to pull from google sheets
-zeroTo2   <- getURL('https://docs.google.com/spreadsheets/d/1c_FBfXw_Oq-p5ocYx5wnHqnA-7dTI01tx7J7YszytsI/pub?gid=0&single=true&output=csv')
-threeTo5  <- getURL('https://docs.google.com/spreadsheets/d/10TEwPj-fRlb0kaCFJM86pudOpKObacBXhl4I4Cz6r90/pub?gid=0&single=true&output=csv')     
-other     <- getURL('https://docs.google.com/spreadsheets/d/1P9jRvModlmzReivw9Gljt-qv9T1hlW9brhTEPgvMRoI/pub?gid=0&single=true&output=csv')
+zeroTo2   <- getURL('https://docs.google.com/spreadsheets/d/1P9jRvModlmzReivw9Gljt-qv9T1hlW9brhTEPgvMRoI/pub?gid=1488961162&single=true&output=csv')
+threeTo5  <- getURL('https://docs.google.com/spreadsheets/d/1P9jRvModlmzReivw9Gljt-qv9T1hlW9brhTEPgvMRoI/pub?gid=1835285205&single=true&output=csv')     
+other     <- getURL('https://docs.google.com/spreadsheets/d/1P9jRvModlmzReivw9Gljt-qv9T1hlW9brhTEPgvMRoI/pub?gid=1447056049&single=true&output=csv')
 soc       <- getURL('https://docs.google.com/spreadsheets/d/1wWVpXkU7OG2dGjCEEOK4Z4sS02tgK9_zee9cl0MdQRE/pub?gid=0&single=true&output=csv')
 
 business0to2      <- read.csv(textConnection(zeroTo2))
@@ -57,7 +57,7 @@ colnames(socGroup0to2)[2] <- "0-2 years"
 socGroup3to5 <- count(all, socGroup, wt = threeToFiveYearsExperience)
 colnames(socGroup3to5)[2] <- "3-5 years"
 socGroupOther <- count(all, socGroup, wt = Other)
-colnames(socGroupOther)[2] <- "Other"
+colnames(socGroupOther)[2] <- "6 or more"
 
 #Create data table with count of experience levels by the major soc group     
 xy <- full_join(socGroup0to2, socGroup3to5, by = 'socGroup')
@@ -78,37 +78,37 @@ xy <- xy %>%
 #change to numeric 
 xy$`0-2 years` <- as.numeric(as.character(xy$`0-2 years`))
 xy$`3-5 years` <- as.numeric(as.character(xy$`3-5 years`))
-xy$Other <- as.numeric(as.character(xy$Other))
+xy$`6 or more` <- as.numeric(as.character(xy$`6 or more`))
 
 
-
+## NEED TO CALCULATE PERCENTAGES BY GROUP 
 #Add calculation for percentages
-xy$zeroTo2percent  <- (xy$`0-2 years`)/(xy$`0-2 years` + xy$`3-5 years` + xy$Other)
-xy$threeTo5percent <- (xy$`3-5 years`)/(xy$`0-2 years` + xy$`3-5 years` + xy$Other)
-xy$otherPercent    <- (xy$Other)/(xy$`0-2 years` + xy$`3-5 years` + xy$Other)
+xy$zeroTo2percent  <- (xy$`0-2 years`)/(xy$`0-2 years` + xy$`3-5 years` + xy$`6 or more`)
+xy$threeTo5percent <- (xy$`3-5 years`)/(xy$`0-2 years` + xy$`3-5 years` + xy$`6 or more`)
+xy$otherPercent    <- (xy$`6 or more`)/(xy$`0-2 years` + xy$`3-5 years` + xy$`6 or more`)
 
 
 rawData     <- xy %>%
-  select(1:5)
+                select(1:5)
 
 percentData <- xy %>%
-  select(1, 5:8)
+                select(1, 5:8)
 
 rawData     <- melt(rawData)
 percentData <- melt(percentData)
 
-allData <- cbind(percentData, rawData)
+allData <- full_join(percentData, rawData, by = "socGroup")
 
 colnames(allData)[1] <- 'SOC'
 colnames(allData)[2] <- 'Occupations'
 colnames(allData)[3] <- 'Percent Type'
-colnames(allData)[4] <- 'Percent'
+colnames(allData)[5] <- 'Percent'
 colnames(allData)[6] <- 'occ'
 colnames(allData)[7] <- 'Experience'
 colnames(allData)[8] <- 'Jobs'
 
 allData <- allData %>%
-  select(1:4, 7:8)
+  select(1:5, 7:8)
 totals <- count(allData, Occupations, wt = Jobs, sort = TRUE)
 allData <- full_join(allData, totals, by = 'Occupations')
 allData <- allData %>%
@@ -120,8 +120,7 @@ Occupation <- reorder(allData$Occupations, allData$n)
 
 g <- ggplot(allData, aes(x = Occupation, 
                          y = Jobs, 
-                         fill = Experience, 
-                         label = Percent)) +      
+                         fill = Experience)) +      
   geom_bar(stat = 'identity') +
   labs(x = '', 
        y = 'Number of Job Postings') +

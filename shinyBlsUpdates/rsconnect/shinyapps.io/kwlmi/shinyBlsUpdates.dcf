@@ -1,0 +1,11 @@
+name: shinyBlsUpdates
+title:
+account: kwlmi
+server: shinyapps.io
+appId: 127494
+bundleId: 663911
+url: https://kwlmi.shinyapps.io/shinyBlsUpdates/
+when: 1483039656.55742
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: dataUpdate.R

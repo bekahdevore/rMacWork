@@ -1,9 +1,10 @@
 name: shinyBusiness
+title:
 account: kwlmi
 server: shinyapps.io
 appId: 132885
-bundleId: 592321
+bundleId: 657329
 url: https://kwlmi.shinyapps.io/shinyBusiness/
-when: 1477003040.93374
+when: 1482333492.76839
 asMultiple: FALSE
 asStatic: FALSE

@@ -1,10 +1,3 @@
-
-# This is the user-interface definition of a Shiny web application.
-# You can find out more about building applications with Shiny here:
-#
-# http://shiny.rstudio.com
-#
-
 library(shiny)
 library(shinythemes)
 library(dplyr)
@@ -14,6 +7,7 @@ library(plotly)
 library(scales)
 library(RCurl)
 library(ggthemes)
+library(treemap)
 
 #Load data, upgrade to pull from google sheets
 zeroTo2   <- getURL('https://docs.google.com/spreadsheets/d/1c_FBfXw_Oq-p5ocYx5wnHqnA-7dTI01tx7J7YszytsI/pub?gid=0&single=true&output=csv')
@@ -56,7 +50,7 @@ colnames(socGroup0to2)[2] <- "0-2 years"
 socGroup3to5 <- count(all, socGroup, wt = threeToFiveYearsExperience)
 colnames(socGroup3to5)[2] <- "3-5 years"
 socGroupOther <- count(all, socGroup, wt = Other)
-colnames(socGroupOther)[2] <- "Other"
+colnames(socGroupOther)[2] <- "6 or more"
 
 #Create data table with count of experience levels by the major soc group     
 xy <- full_join(socGroup0to2, socGroup3to5, by = 'socGroup')
@@ -77,26 +71,24 @@ xy <- xy %>%
 #change to numeric 
 xy$`0-2 years` <- as.numeric(as.character(xy$`0-2 years`))
 xy$`3-5 years` <- as.numeric(as.character(xy$`3-5 years`))
-xy$Other <- as.numeric(as.character(xy$Other))
+xy$`6 or more` <- as.numeric(as.character(xy$`6 or more`))
 
 
 
 #Add calculation for percentages
-xy$zeroTo2percent  <- (xy$`0-2 years`)/(xy$`0-2 years` + xy$`3-5 years` + xy$Other)
-xy$threeTo5percent <- (xy$`3-5 years`)/(xy$`0-2 years` + xy$`3-5 years` + xy$Other)
-xy$otherPercent    <- (xy$Other)/(xy$`0-2 years` + xy$`3-5 years` + xy$Other)
+xy$zeroTo2percent  <- (xy$`0-2 years`)/(xy$`0-2 years` + xy$`3-5 years` + xy$`6 or more`)
+xy$threeTo5percent <- (xy$`3-5 years`)/(xy$`0-2 years` + xy$`3-5 years` + xy$`6 or more`)
+xy$otherPercent    <- (xy$`6 or more`)/(xy$`0-2 years` + xy$`3-5 years` + xy$`6 or more`)
 
 
-rawData     <- xy %>%
-  select(1:5)
+rawData     <- xy %>% select(1:5)
 
-percentData <- xy %>%
-  select(1, 5:8)
+percentData <- xy %>% select(1, 5:8)
 
 rawData     <- melt(rawData)
 percentData <- melt(percentData)
 
-allData <- cbind(percentData, rawData)
+allData <- full_join(percentData, rawData, by = "socGroup")
 
 colnames(allData)[1] <- 'SOC'
 colnames(allData)[2] <- 'Occupations'
@@ -112,7 +104,6 @@ totals <- count(allData, Occupations, wt = Jobs, sort = TRUE)
 allData <- full_join(allData, totals, by = 'Occupations')
 allData <- allData %>%
   arrange(n)
-
 
 
 
@@ -135,7 +126,7 @@ navbarPage(
   
   tabPanel('About Data', 
            h1('Burning Glass, Labor Insights'),
-           p('Online Job postings in the Louisville MSA, July 2016 - September 2016 ')
+           p('Online Job postings in the Louisville MSA, January 2016 - December 2016 ')
                ))
 
 
